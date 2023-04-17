@@ -18,8 +18,8 @@ def path():
     return "./data/census.csv"
 
 @pytest.fixture(scope="module")
-def data(path):
-    df = pd.read_csv(path)
+def data():
+    df = pd.read_csv("./data/census.csv")
     return df
 
 @pytest.fixture(scope="module")
