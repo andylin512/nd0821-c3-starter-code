@@ -15,7 +15,7 @@ from starter.ml.data import process_data
 # Create Fixture
 @pytest.fixture(scope="module")
 def path():
-    return "./data/census.csv"
+    return "./starter/data/census.csv"
 
 @pytest.fixture(scope="module")
 def data(path):
