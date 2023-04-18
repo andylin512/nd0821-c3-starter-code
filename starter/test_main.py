@@ -15,9 +15,29 @@ CLIENT = TestClient(app)
 
 # Define fixture
 @pytest.fixture(scope="module")
-def sample():
+def sample_1():
     sample =  {  
-            'age':30,
+            'age':10,
+            'workclass':"Private", 
+            'fnlgt':234721,
+            'education':"Doctorate",
+            'education_num':16,
+            'marital_status':"Separated",
+            'occupation':"Exec-managerial",
+            'relationship':"Not-in-family",
+            'race':"Black",
+            'sex':"Female",
+            'capital_gain':0,
+            'capital_loss':0,
+            'hours_per_week':50,
+            'native_country':"United-States"
+        }
+    return sample
+
+@pytest.fixture(scope="module")
+def sample_2():
+    sample =  {  
+            'age':60,
             'workclass':"Private", 
             'fnlgt':234721,
             'education':"Doctorate",
@@ -35,6 +55,7 @@ def sample():
     return sample
 
 
+
 def test_get():
     """
     Test Get response and message
@@ -43,21 +64,29 @@ def test_get():
     assert r.status_code == 200
     assert r.json() == "Welcome to my first model API"
 
-def test_inference_response(sample):
+def test_prediction_1(sample_1):
     """
     Test API response when uploading proper sample data
     """
-    data = json.dumps(sample)
+    data = json.dumps(sample_1)
     r = CLIENT.post("/inference/", data=data)
-
+    result = json.loads(r.json())
+    
     assert r.status_code == 200
+    assert result["age"]["0"]  == 10
+    assert result["prediction"]["0"] == "<=50k"
 
-def test_prediction(sample):
+    
+
+
+
+def test_prediction_2(sample_2):
     """
     Test prediction result after uploading proper sample data
     """
-    data = json.dumps(sample)
+    data = json.dumps(sample_2)
     r = CLIENT.post("/inference/", data=data)
     result = json.loads(r.json())
-    assert result["age"]["0"]  == 30
-    assert result["prediction"]["0"] is not None
+    print(result)
+    assert result["age"]["0"]  == 60
+    assert result["prediction"]["0"] == ">50k"
