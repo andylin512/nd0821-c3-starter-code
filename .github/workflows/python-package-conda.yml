@@ -34,6 +34,7 @@ jobs:
         conda install pytest
         pytest
           - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
     - name: Heroku deployment
       uses: akhileshns/heroku-deploy@v3.12.13 # This is the action
       with:
