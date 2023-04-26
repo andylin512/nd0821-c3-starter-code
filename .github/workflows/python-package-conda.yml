@@ -34,10 +34,10 @@ jobs:
         conda install pytest
         pytest
           - uses: actions/checkout@v2
-    - uses: actions/checkout@v2
-    - name: Heroku deployment
-      uses: akhileshns/heroku-deploy@v3.12.13 # This is the action
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "andyapp"
-        heroku_email: "andymail512@gmail.com"
+#     - uses: actions/checkout@v2
+#     - name: Heroku deployment
+#       uses: akhileshns/heroku-deploy@v3.12.13 # This is the action
+#       with:
+#         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#         heroku_app_name: "andyapp"
+#         heroku_email: "andymail512@gmail.com"
