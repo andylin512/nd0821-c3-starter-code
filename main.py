@@ -84,7 +84,7 @@ async def upload_data(inference: Data):
     df = pd.DataFrame(data, index=[0])
 
     # File Dir
-    FILE_DIR = "./starter/"# os.path.dirname(os.path.abspath(sys.argv[1]))
+    FILE_DIR = "./"# os.path.dirname(os.path.abspath(sys.argv[1]))
 
     # cat_feature for data transformation purpose
     CAT_FEATURE = [
